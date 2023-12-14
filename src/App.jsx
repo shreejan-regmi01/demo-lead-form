@@ -14,6 +14,7 @@ function App() {
         },
         token: {
           fontFamily: "'Poppins', sans-serif",
+          colorPrimary: '#8d33e1',
         },
       }}
     >
