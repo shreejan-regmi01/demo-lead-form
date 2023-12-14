@@ -1,5 +1,27 @@
+import { Outlet } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
+import DefaultLayout from './layout/DefaultLayout';
 function App() {
-  return <h1 className="bg-blue-500">Test</h1>;
+  return (
+    <ConfigProvider
+      theme={{
+        components: {
+          Layout: {
+            headerBg: 'white',
+            bodyBg: 'red',
+            footerBg: 'blue',
+          },
+        },
+        token: {
+          fontFamily: "'Poppins', sans-serif",
+        },
+      }}
+    >
+      <DefaultLayout>
+        <Outlet />
+      </DefaultLayout>
+    </ConfigProvider>
+  );
 }
 
 export default App;
