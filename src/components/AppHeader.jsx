@@ -8,7 +8,7 @@ export default function AppHeader() {
         <img src={logo} alt="logo" />
       </div>
       <div>
-        <PhoneFilled className="text-primary text-lg" /> <span className="text-sm">984 248 5455</span>
+        <PhoneFilled className="text-primary text-lg" /> <span className="text-sm font-medium">984 248 5455</span>
       </div>
     </Flex>
   );

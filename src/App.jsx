@@ -8,13 +8,17 @@ function App() {
         components: {
           Layout: {
             headerBg: 'white',
-            bodyBg: 'red',
-            footerBg: 'blue',
+            bodyBg: 'white',
+            footerBg: 'white',
           },
+          Typography: {},
         },
         token: {
+          fontSizeHeading1: '14',
           fontFamily: "'Poppins', sans-serif",
           colorPrimary: '#8d33e1',
+          // fontSize: '12',
+          // colorPrimary: 'red',
         },
       }}
     >
