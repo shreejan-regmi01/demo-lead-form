@@ -6,7 +6,7 @@ import { PercentageOutlined } from '@ant-design/icons';
 export default function LoanDetailsForm() {
   const [form] = Form.useForm();
   return (
-    <div className="mt-6">
+    <>
       <Typography.Title level={1}>Loan details</Typography.Title>
       <Form layout="vertical" form={form} className="mt-4">
         <Form.Item label="Approximate purchase price">
@@ -53,6 +53,6 @@ export default function LoanDetailsForm() {
           </Button>
         </Form.Item>
       </Form>
-    </div>
+    </>
   );
 }
