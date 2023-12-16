@@ -3,7 +3,7 @@ import LoanDetailsForm from '../../components/page-forms/LoanDetailsForm';
 
 export default function LoanDetails() {
   return (
-    <div className="mt-8 w-[50%] mx-auto max-w-[465px]">
+    <div className="mt-8 w-[40%] mx-auto max-w-[465px]">
       <FormWrapper>
         <LoanDetailsForm />
       </FormWrapper>

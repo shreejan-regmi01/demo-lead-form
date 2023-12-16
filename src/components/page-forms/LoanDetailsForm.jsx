@@ -1,12 +1,14 @@
 import { Button, Form, Select, Typography } from 'antd';
 import AmountInput from '../form-items/AmountInput';
+import BaseInput from '../form-items/BaseInput';
+import { PercentageOutlined } from '@ant-design/icons';
 
 export default function LoanDetailsForm() {
   const [form] = Form.useForm();
   return (
-    <div className="mt-8">
+    <div className="mt-6">
       <Typography.Title level={1}>Loan details</Typography.Title>
-      <Form layout="vertical" form={form} className="mt-6">
+      <Form layout="vertical" form={form} className="mt-4">
         <Form.Item label="Approximate purchase price">
           <AmountInput />
         </Form.Item>
@@ -42,7 +44,9 @@ export default function LoanDetailsForm() {
             ]}
           />
         </Form.Item>
-        <Form.Item label="Balloon"></Form.Item>
+        <Form.Item label="Balloon">
+          <BaseInput defaultValue={0} suffix={<PercentageOutlined />} />;
+        </Form.Item>
         <Form.Item className="text-right">
           <Button type="primary" size="large" className="!rounded-full">
             Submit
