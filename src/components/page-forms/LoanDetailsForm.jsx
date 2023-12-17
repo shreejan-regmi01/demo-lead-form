@@ -8,23 +8,22 @@ import {
   LOAN_TERM_3_YEARS,
   LOAN_TERM_4_YEARS,
   LOAN_TERM_5_YEARS,
+  LOCALSTORAGE_FORMDATA_KEY,
 } from '../../constants';
+import useLocalStorage from '../../hooks/useLocalStorage';
 export default function LoanDetailsForm() {
   const [form] = Form.useForm();
+  const { setItem, getInitializedOrExistingData } = useLocalStorage(LOCALSTORAGE_FORMDATA_KEY);
 
-  const dataLoadedFromStorage = JSON.parse(localStorage.getItem('leadJourneyData'));
-
-  const freshData = {
+  const formData = getInitializedOrExistingData({
     purchasePrice: null,
     deposit: null,
     term: LOAN_TERM_5_YEARS,
     balloon: 0,
-  };
+  });
 
   function onFinish(data) {
-    console.log(data);
-    localStorage.setItem('leadJourneyData', JSON.stringify(data));
-    // create custom hook for localstorage mgmt https://react.dev/learn/reusing-logic-with-custom-hooks
+    setItem(data);
   }
 
   function onFinishFailed(errorData) {
@@ -40,7 +39,7 @@ export default function LoanDetailsForm() {
         className="mt-4"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        initialValues={dataLoadedFromStorage || freshData}
+        initialValues={formData}
       >
         <Form.Item
           label="Approximate purchase price"
