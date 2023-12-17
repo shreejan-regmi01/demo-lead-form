@@ -1,18 +1,17 @@
 import { Typography } from 'antd';
 import kateImage from '../assets/kate.png';
 
-export default function FormWrapper({ children }) {
+export default function FormWrapper({ children, message }) {
   return (
-    <div className="mt-8 w-[40%] mx-auto max-w-[465px]">
+    <div className="mt-8 mx-auto max-w-[460px]">
       <div className="flex justify-center items-start gap-4">
         <div>
           <img src={kateImage} alt="" width="45px" />
         </div>
-        <div>
+        <div className="w-full">
           <div className="bg-lightpurple p-4 rounded-md">
             <Typography.Title level={1}>Kate</Typography.Title>
-            <p>Hi I&apos;m Kate. I&apos;m here to find you the best car loan options.</p>
-            <p className="mt-2">Let&apos;s get started!</p>
+            {message}
           </div>
           <div className="mt-6">{children}</div>
         </div>

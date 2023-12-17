@@ -20,3 +20,9 @@
     @apply m-0 p-0;
   }
 }
+
+@layer components {
+  .select-option-active {
+    @apply border-primary text-primary font-semibold;
+  }
+}

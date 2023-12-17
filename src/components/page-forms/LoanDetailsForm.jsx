@@ -1,4 +1,4 @@
-import { Button, Form, Select, Typography } from 'antd';
+import { Form, Select, Typography } from 'antd';
 import AmountInput from '../form-items/AmountInput';
 import BaseInput from '../form-items/BaseInput';
 import { PercentageOutlined } from '@ant-design/icons';
@@ -12,10 +12,11 @@ import {
 } from '../../constants';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { useNavigate } from 'react-router-dom';
+import PrimaryButton from '../PrimaryButton';
 
 export default function LoanDetailsForm() {
   const [form] = Form.useForm();
-  const { setItem, getInitializedOrExistingData } = useLocalStorage(LOCALSTORAGE_FORMDATA_KEY);
+  const { setItem, getInitializedOrExistingData, getItem } = useLocalStorage(LOCALSTORAGE_FORMDATA_KEY);
   const navigate = useNavigate();
 
   const formData = getInitializedOrExistingData({
@@ -26,7 +27,7 @@ export default function LoanDetailsForm() {
   });
 
   function onFinish(data) {
-    setItem(data);
+    setItem({ ...getItem(), ...data });
     navigate('car-in-mind');
   }
 
@@ -86,10 +87,11 @@ export default function LoanDetailsForm() {
         <Form.Item label="Balloon" name={'balloon'}>
           <BaseInput suffix={<PercentageOutlined />} />
         </Form.Item>
-        <Form.Item className="text-right">
-          <Button type="primary" size="large" className="!rounded-full" htmlType="submit">
+        <Form.Item>
+          {/* <Button type="primary" size="large" className="!rounded-full" htmlType="submit">
             Submit
-          </Button>
+          </Button> */}
+          <PrimaryButton htmlType="submit" label="Continue" />
         </Form.Item>
       </Form>
     </>
