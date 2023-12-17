@@ -1,7 +1,7 @@
 import { Layout } from 'antd';
 import AppHeader from '../components/AppHeader';
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 export default function DefaultLayout({ children }) {
   return (
@@ -10,7 +10,7 @@ export default function DefaultLayout({ children }) {
         <AppHeader />
       </Header>
       <Content>{children}</Content>
-      <Footer></Footer>
+      {/* <Footer></Footer> */}
     </Layout>
   );
 }

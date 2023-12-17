@@ -11,9 +11,12 @@ import {
   LOCALSTORAGE_FORMDATA_KEY,
 } from '../../constants';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import { useNavigate } from 'react-router-dom';
+
 export default function LoanDetailsForm() {
   const [form] = Form.useForm();
   const { setItem, getInitializedOrExistingData } = useLocalStorage(LOCALSTORAGE_FORMDATA_KEY);
+  const navigate = useNavigate();
 
   const formData = getInitializedOrExistingData({
     purchasePrice: null,
@@ -24,6 +27,7 @@ export default function LoanDetailsForm() {
 
   function onFinish(data) {
     setItem(data);
+    navigate('car-in-mind');
   }
 
   function onFinishFailed(errorData) {
