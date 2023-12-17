@@ -14,7 +14,7 @@ export default function CarInMindForm() {
   function continueJourney() {
     const existingData = getItem();
     setItem({ ...existingData, hasCarInMind: selectedOption });
-    navigate('/select-a-car');
+    navigate('/purchase-information');
   }
 
   return (

@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import LoanDetails from './views/lead-application/LoanDetails.jsx';
 import CarInMind from './views/lead-application/CarInMind.jsx';
+import PurchaseInformation from './views/lead-application/PurchaseInformation.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: 'car-in-mind',
         element: <CarInMind />,
+      },
+      {
+        path: 'purchase-information',
+        element: <PurchaseInformation />,
       },
     ],
   },
