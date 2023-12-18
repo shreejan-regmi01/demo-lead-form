@@ -21,3 +21,6 @@ export const URGENCY_ASAP = 'ASAP';
 export const URGENCY_WITHIN_1_MONTH = 'Within 1 month';
 export const URGENCY_NO_HURRY = 'No hurry';
 export const URGENCIES = [URGENCY_ASAP, URGENCY_WITHIN_1_MONTH, URGENCY_NO_HURRY];
+
+export const USAGE_PERSONAL = 'Personal';
+export const USAGE_BUSINESS = 'Business';

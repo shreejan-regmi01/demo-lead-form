@@ -6,6 +6,7 @@ import './index.css';
 import LoanDetails from './views/lead-application/LoanDetails.jsx';
 import CarInMind from './views/lead-application/CarInMind.jsx';
 import PurchaseInformation from './views/lead-application/PurchaseInformation.jsx';
+import Usage from './views/lead-application/Usage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: 'purchase-information',
         element: <PurchaseInformation />,
+      },
+      {
+        path: 'usage',
+        element: <Usage />,
       },
     ],
   },
