@@ -1,5 +1,5 @@
 import { Form, Typography } from 'antd';
-import { BUYING_FROM, CAR_CONDITIONS, LOCALSTORAGE_FORMDATA_KEY, URGENCIES } from '../../constants';
+import { BUYING_FROM, CAR_CONDITIONS, CAR_CONDITION_USED, LOCALSTORAGE_FORMDATA_KEY, URGENCIES } from '../../constants';
 import useLocalStorage from '../../hooks/useLocalStorage';
 // import { useNavigate } from 'react-router-dom';
 import PrimaryButton from '../PrimaryButton';
@@ -43,13 +43,24 @@ export default function LoanDetailsForm() {
         >
           <BaseSelect options={CAR_CONDITIONS.map((v) => ({ label: v, value: v }))} />
         </Form.Item>
+
         <Form.Item
-          label="Where are you buying from?"
-          name="buyingFrom"
-          rules={[{ required: true, message: 'Please select an option' }]}
+          noStyle
+          shouldUpdate={(prevValues, currentValues) => prevValues.carCondition !== currentValues.carCondition}
         >
-          <BaseSelect options={BUYING_FROM.map((v) => ({ label: v, value: v }))} />
+          {({ getFieldValue }) =>
+            getFieldValue('carCondition') === CAR_CONDITION_USED ? (
+              <Form.Item
+                label="Where are you buying from?"
+                name="buyingFrom"
+                rules={[{ required: true, message: 'Please select an option' }]}
+              >
+                <BaseSelect options={BUYING_FROM.map((v) => ({ label: v, value: v }))} />
+              </Form.Item>
+            ) : null
+          }
         </Form.Item>
+
         <Form.Item
           label="How quickly do you want to purchase?"
           name="urgency"
