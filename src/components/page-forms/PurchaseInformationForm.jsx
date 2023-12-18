@@ -15,10 +15,8 @@ export default function LoanDetailsForm() {
     buyingFrom: null,
     urgency: null,
   });
-  console.log(formData);
 
   function onFinish(data) {
-    console.log(data);
     setItem({ ...getItem(), ...data });
     // navigate('car-in-mind');
   }

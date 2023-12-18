@@ -7,8 +7,8 @@ import { LOCALSTORAGE_FORMDATA_KEY } from '../../constants';
 import { useNavigate } from 'react-router-dom';
 
 export default function CarInMindForm() {
-  const [selectedOption, setSelectedOption] = useState(null);
   const { getItem, setItem } = useLocalStorage(LOCALSTORAGE_FORMDATA_KEY);
+  const [selectedOption, setSelectedOption] = useState(getItem()?.hasCarInMind);
   const navigate = useNavigate();
 
   function continueJourney() {
