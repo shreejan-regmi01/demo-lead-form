@@ -4,17 +4,17 @@ import { useState } from 'react';
 import PrimaryButton from '../PrimaryButton';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { LOCALSTORAGE_FORMDATA_KEY, USAGE_BUSINESS, USAGE_PERSONAL } from '../../constants';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function UsageForm() {
   const { getItem, setItem } = useLocalStorage(LOCALSTORAGE_FORMDATA_KEY);
   const [selectedOption, setSelectedOption] = useState(getItem()?.usage);
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   function continueJourney() {
     const existingData = getItem();
     setItem({ ...existingData, usage: selectedOption });
-    // navigate('/purchase-information');
+    navigate('/submission-success');
   }
 
   return (
