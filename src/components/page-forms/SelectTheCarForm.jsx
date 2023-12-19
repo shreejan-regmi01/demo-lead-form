@@ -5,36 +5,12 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import PrimaryButton from '../PrimaryButton';
 import BaseSelect from '../../components/form-items/BaseSelect';
 
-const carData = {
-  Abarth: {
-    124: {
-      2019: ['348 Series 1 Spider Roadster 2dr Spts Auto 6sp 1.4T', '348 Series 1 Spider Roadster 2dr Man 6sp 1.4T'],
-      2018: ['448 Series 2 Jaguar Hike 2dr Spts Auto 6sp 1.4T', '448 Series 2 Jaguar Hike 2dr Man 6sp 1.4T'],
-    },
-    500: {
-      2014: ['Series 1 Esseesse Hatchback 3dr Man 5sp 1.4T', 'Series 1 Esseesse C Convertible 2dr MTA 5sp 1.4T'],
-      2013: ['Series 1 Esseesse Hatchback 3dr Man 5sp 1.4T', 'Series 1 Esseesse C Convertible 2dr MTA 5sp 1.4T'],
-    },
-  },
-  Bentley: {
-    Arnage: {
-      2009: ['Series 2 MY08 R Sedan 4dr Spts Auto 6sp 6.8TT'],
-      2008: [' Series 2 MY08 RL Sedan LWB 4dr Spts Auto 6sp 6.8TT'],
-    },
-  },
-};
-
 export default function SelectTheCarForm() {
   const [form] = Form.useForm();
-  const { setItem, getInitializedOrExistingData, getItem } = useLocalStorage(LOCALSTORAGE_FORMDATA_KEY);
+  const { setItem, getItem } = useLocalStorage(LOCALSTORAGE_FORMDATA_KEY);
   //   const navigate = useNavigate();
 
-  const formData = getInitializedOrExistingData({
-    make: null,
-    model: null,
-    year: null,
-    modelType: null,
-  });
+  const formData = getItem();
 
   function getMakes() {
     return Object.keys(carData).map((k) => ({ label: k, value: k }));
@@ -69,7 +45,7 @@ export default function SelectTheCarForm() {
   }
 
   function onFinish(data) {
-    setItem({ ...getItem(), ...data });
+    setItem({ ...getItem(), vehicle: data });
     // navigate('/select-the-car');
   }
 
@@ -86,7 +62,7 @@ export default function SelectTheCarForm() {
         className="mt-4"
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        initialValues={formData}
+        initialValues={formData?.vehicle}
         onValuesChange={onValuesChanged}
       >
         <Form.Item label="Make" name="make" rules={[{ required: true, message: 'Please select an option' }]}>
@@ -128,3 +104,22 @@ export default function SelectTheCarForm() {
     </>
   );
 }
+
+const carData = {
+  Abarth: {
+    124: {
+      2019: ['348 Series 1 Spider Roadster 2dr Spts Auto 6sp 1.4T', '348 Series 1 Spider Roadster 2dr Man 6sp 1.4T'],
+      2018: ['448 Series 2 Jaguar Hike 2dr Spts Auto 6sp 1.4T', '448 Series 2 Jaguar Hike 2dr Man 6sp 1.4T'],
+    },
+    500: {
+      2014: ['Series 1 Esseesse Hatchback 3dr Man 5sp 1.4T', 'Series 1 Esseesse C Convertible 2dr MTA 5sp 1.4T'],
+      2013: ['Series 1 Esseesse Hatchback 3dr Man 5sp 1.4T', 'Series 1 Esseesse C Convertible 2dr MTA 5sp 1.4T'],
+    },
+  },
+  Bentley: {
+    Arnage: {
+      2009: ['Series 2 MY08 R Sedan 4dr Spts Auto 6sp 6.8TT'],
+      2008: [' Series 2 MY08 RL Sedan LWB 4dr Spts Auto 6sp 6.8TT'],
+    },
+  },
+};
