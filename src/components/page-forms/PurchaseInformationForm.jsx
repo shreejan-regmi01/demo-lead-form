@@ -1,14 +1,14 @@
 import { Form, Typography } from 'antd';
 import { BUYING_FROM, CAR_CONDITIONS, CAR_CONDITION_USED, LOCALSTORAGE_FORMDATA_KEY, URGENCIES } from '../../constants';
 import useLocalStorage from '../../hooks/useLocalStorage';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PrimaryButton from '../PrimaryButton';
 import BaseSelect from '../../components/form-items/BaseSelect';
 
 export default function LoanDetailsForm() {
   const [form] = Form.useForm();
   const { setItem, getInitializedOrExistingData, getItem } = useLocalStorage(LOCALSTORAGE_FORMDATA_KEY);
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const formData = getInitializedOrExistingData({
     carCondition: null,
@@ -18,7 +18,7 @@ export default function LoanDetailsForm() {
 
   function onFinish(data) {
     setItem({ ...getItem(), ...data });
-    // navigate('car-in-mind');
+    navigate('/select-the-car');
   }
 
   function onFinishFailed(errorData) {
