@@ -27,10 +27,7 @@ function App() {
         token: {
           fontSizeHeading1: '14',
           fontFamily: "'Poppins', sans-serif",
-          // colorPrimary: '#8d33e1',
           colorPrimary: '#7100da',
-          // colorBorder: '#7100da',
-          // borderRadiusLG: '999px',
         },
       }}
     >
