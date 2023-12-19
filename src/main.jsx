@@ -8,6 +8,7 @@ import CarInMind from './views/lead-application/CarInMind.jsx';
 import PurchaseInformation from './views/lead-application/PurchaseInformation.jsx';
 import Usage from './views/lead-application/Usage.jsx';
 import SelectTheCar from './views/lead-application/SelectTheCar.jsx';
+import ApplicationSubmitted from './views/lead-application/ApplicationSubmitted.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: 'select-the-car',
         element: <SelectTheCar />,
+      },
+      {
+        path: 'submission-success',
+        element: <ApplicationSubmitted />,
       },
     ],
   },

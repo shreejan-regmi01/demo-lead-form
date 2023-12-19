@@ -1,14 +1,14 @@
 import { Form, Typography } from 'antd';
 import { LOCALSTORAGE_FORMDATA_KEY } from '../../constants';
 import useLocalStorage from '../../hooks/useLocalStorage';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PrimaryButton from '../PrimaryButton';
 import BaseSelect from '../../components/form-items/BaseSelect';
 
 export default function SelectTheCarForm() {
   const [form] = Form.useForm();
   const { setItem, getItem } = useLocalStorage(LOCALSTORAGE_FORMDATA_KEY);
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const formData = getItem();
 
@@ -46,7 +46,7 @@ export default function SelectTheCarForm() {
 
   function onFinish(data) {
     setItem({ ...getItem(), vehicle: data });
-    // navigate('/select-the-car');
+    navigate('/submission-success');
   }
 
   function onFinishFailed(errorData) {
