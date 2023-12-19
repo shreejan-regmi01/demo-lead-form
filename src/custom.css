@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.ant-input-number {
+  border-radius: 9999px;
+}
+.ant-input-number-input {
+  text-align: center !important;
+}
+
 .ant-select-selector {
   border-radius: 9999px !important;
 }

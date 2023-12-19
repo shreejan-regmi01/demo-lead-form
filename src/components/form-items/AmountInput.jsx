@@ -1,5 +1,14 @@
-import BaseInput from './BaseInput';
+import { InputNumber } from 'antd';
 
 export default function AmountInput({ ...rest }) {
-  return <BaseInput placeholder="Amount" prefix="$" {...rest} />;
+  return (
+    <InputNumber
+      placeholder="Amount"
+      prefix="$"
+      size="large"
+      className="text-center rounded-full text-sm w-full"
+      controls={false}
+      {...rest}
+    />
+  );
 }

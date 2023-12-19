@@ -1,6 +1,5 @@
-import { Form, Select, Typography } from 'antd';
+import { Form, InputNumber, Select, Typography } from 'antd';
 import AmountInput from '../form-items/AmountInput';
-import BaseInput from '../form-items/BaseInput';
 import { PercentageOutlined } from '@ant-design/icons';
 import {
   LOAN_TERM_1_YEAR,
@@ -85,12 +84,15 @@ export default function LoanDetailsForm() {
           />
         </Form.Item>
         <Form.Item label="Balloon" name={'balloon'}>
-          <BaseInput suffix={<PercentageOutlined />} />
+          <InputNumber
+            placeholder="Percent"
+            suffix={<PercentageOutlined />}
+            size="large"
+            className="text-center rounded-full text-sm w-full"
+            controls={false}
+          />
         </Form.Item>
         <Form.Item>
-          {/* <Button type="primary" size="large" className="!rounded-full" htmlType="submit">
-            Submit
-          </Button> */}
           <PrimaryButton htmlType="submit" label="Continue" />
         </Form.Item>
       </Form>
