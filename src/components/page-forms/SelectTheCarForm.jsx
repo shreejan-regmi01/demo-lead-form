@@ -5,8 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import PrimaryButton from '../PrimaryButton';
 import BaseSelect from '../../components/form-items/BaseSelect';
 import axios from '../../axios';
+import { useContext } from 'react';
+import { NotificationContext } from '../../App';
 
 export default function SelectTheCarForm() {
+  const { notificationApi } = useContext(NotificationContext);
   const [form] = Form.useForm();
   const { setItem, getItem } = useLocalStorage(LOCALSTORAGE_FORMDATA_KEY);
   const navigate = useNavigate();
@@ -50,7 +53,6 @@ export default function SelectTheCarForm() {
 
     let applicationPayload = getItem();
     delete applicationPayload.vehicle;
-
     let vehiclePayload = getItem().vehicle;
 
     try {
@@ -60,8 +62,12 @@ export default function SelectTheCarForm() {
         applicationId: applicationResponse.data.id,
       });
       navigate('/submission-success');
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      notificationApi.error({
+        message: err.response.data.error,
+        description: err.response.data.message,
+      });
+      //need to do the same API integration in usage page form
     }
   }
 
