@@ -65,9 +65,8 @@ export default function SelectTheCarForm() {
     } catch (err) {
       notificationApi.error({
         message: err.response.data.error,
-        description: err.response.data.message,
+        description: err.response.data.message.join('\n'),
       });
-      //need to do the same API integration in usage page form
     }
   }
 
