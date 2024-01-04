@@ -1,8 +1,13 @@
 import { Outlet } from 'react-router-dom';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, notification } from 'antd';
 import DefaultLayout from './layout/DefaultLayout';
 import './custom.css';
+import { createContext } from 'react';
+
+export const NotificationContext = createContext(null);
+
 function App() {
+  const [notificationApi, contextHolder] = notification.useNotification();
   return (
     <ConfigProvider
       theme={{
@@ -31,9 +36,12 @@ function App() {
         },
       }}
     >
-      <DefaultLayout>
-        <Outlet />
-      </DefaultLayout>
+      <NotificationContext.Provider value={{ notificationApi, contextHolder }}>
+        {contextHolder}
+        <DefaultLayout>
+          <Outlet />
+        </DefaultLayout>
+      </NotificationContext.Provider>
     </ConfigProvider>
   );
 }

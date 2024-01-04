@@ -4,8 +4,12 @@ import useLocalStorage from '../../hooks/useLocalStorage';
 import { useNavigate } from 'react-router-dom';
 import PrimaryButton from '../PrimaryButton';
 import BaseSelect from '../../components/form-items/BaseSelect';
+import axios from '../../axios';
+import { useContext } from 'react';
+import { NotificationContext } from '../../App';
 
 export default function SelectTheCarForm() {
+  const { notificationApi } = useContext(NotificationContext);
   const [form] = Form.useForm();
   const { setItem, getItem } = useLocalStorage(LOCALSTORAGE_FORMDATA_KEY);
   const navigate = useNavigate();
@@ -44,9 +48,26 @@ export default function SelectTheCarForm() {
     }
   }
 
-  function onFinish(data) {
+  async function onFinish(data) {
     setItem({ ...getItem(), vehicle: data });
-    navigate('/submission-success');
+
+    let applicationPayload = getItem();
+    delete applicationPayload.vehicle;
+    let vehiclePayload = getItem().vehicle;
+
+    try {
+      const applicationResponse = await axios.post('/applications', applicationPayload);
+      await axios.post('/vehicles', {
+        ...vehiclePayload,
+        applicationId: applicationResponse.data.id,
+      });
+      navigate('/submission-success');
+    } catch (err) {
+      notificationApi.error({
+        message: err.response.data.error,
+        description: err.response.data.message.join('\n'),
+      });
+    }
   }
 
   function onFinishFailed(errorData) {
